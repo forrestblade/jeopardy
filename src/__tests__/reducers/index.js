@@ -1,4 +1,4 @@
-import { category, categories, clues, id } from '../../data'
+import { category, categories, clues, id } from '../../testData'
 import { expect } from 'code'
 import * as creators from '../../actions/action-creators'
 import reducer from '../../reducers'

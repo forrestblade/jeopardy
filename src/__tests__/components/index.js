@@ -1,5 +1,5 @@
-import { App } from '../../components/'
-import { categories } from '../../data'
+import App from '../../components/'
+import { categories } from '../../testData'
 import { expect } from 'code'
 import { shallow } from 'enzyme'
 import React from 'react'
@@ -32,7 +32,7 @@ describe('Given App', () => {
     expect(component.is('main.App')).to.be.true()
   })
 
-  it('should conatin a title', () => {
+  it('should contain a title', () => {
     const component = renderComponent()
 
     expect(component.find('h2').text()).to.equal('Jeopardy!')

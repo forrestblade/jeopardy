@@ -1,5 +1,5 @@
 import { Category } from '../../../components/Category'
-import { clues, category } from '../../../data'
+import { clues, category } from '../../../testData'
 import { expect } from 'code'
 import { shallow } from 'enzyme'
 import React from 'react'
@@ -26,7 +26,6 @@ describe('Given Categories Component', () => {
 
   it('should exist with a specifying className', () => {
     const component = renderComponent()
-
     expect(component.is('main.Category')).to.be.true()
   })
 

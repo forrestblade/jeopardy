@@ -1,5 +1,5 @@
-import { Clue } from '../../../components/Clue'
-import { clue, category } from '../../../data'
+import Clue from '../../../components/Clue'
+import { clue, category } from '../../../testData'
 import { expect } from 'code'
 import { shallow } from 'enzyme'
 import React from 'react'
@@ -54,6 +54,13 @@ describe('Given Clues Component', () => {
         .text()
     ).to.equal(clue.question.toString())
   })
+
+  it('should return "unknown" when no clues.value is given', () => {
+    const component = renderComponent(requiredProps({clue: undefined}))
+
+    expect(component.find('h4').text()).to.equal('unknown')
+  })
+
 
   it('should contain an h6 with an answer when revealed', () => {
     const component = renderComponent()

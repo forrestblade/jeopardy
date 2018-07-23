@@ -1,11 +1,9 @@
 import { expect } from 'code'
-import * as types from '../../../actions/action-types'
-
-const type = types.type
+import types from '../../../actions/action-types'
 
 describe('Action Types', () => {
   it('should use a unique value for each action', () => {
-    const sortedActionValues = Object.values(type).sort()
+    const sortedActionValues = Object.values(types).sort()
 
     sortedActionValues.reduce((previous, current) => {
       expect(current).not.equal(previous)
