@@ -1,6 +1,4 @@
-import * as types from '../action-types'
-
-const type = types.type
+import type from '../action-types'
 
 export function setCategories (categories) {
   return {

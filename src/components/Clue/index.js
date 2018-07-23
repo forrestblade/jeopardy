@@ -1,11 +1,18 @@
-import { connect } from 'react-redux'
 import { toggleReveal } from '../../actions/action-creators'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
-export class Clue extends Component {
+const revealAnswer = props => {
+  return props.reveal === props.clue.id ? (
+    <h6>{props.clue.answer}</h6>
+  ) : (
+    <span />
+  )
+}
+
+export default class Clue extends Component {
   render () {
-    const { answer, question, value } = this.props.clue
+    const { question, value } = this.props.clue
     return (
       <main
         className="clue"
@@ -15,11 +22,7 @@ export class Clue extends Component {
         <hr />
         <h5>{question}</h5>
         <hr />
-        {this.props.reveal === this.props.clue.id ? (
-          <h6>{answer}</h6>
-        ) : (
-          <span />
-        )}
+        {revealAnswer(this.props)}
       </main>
     )
   }
@@ -32,15 +35,11 @@ Clue.defaultProps = {
 
 Clue.propTypes = {
   key: PropTypes.number,
-  clue: PropTypes.object,
+  clue: PropTypes.shape({
+    id: PropTypes.number,
+    question: PropTypes.string,
+    answer: PropTypes.string,
+    value: PropTypes.number
+  }),
   toggleReveal: PropTypes.func
 }
-
-
-const mapStateToProps = state => {
-  return {
-    reveal: state.reveal
-  }
-}
-
-export default connect(mapStateToProps, { toggleReveal })(Clue)

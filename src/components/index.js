@@ -1,12 +1,23 @@
-import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { setCategories, pickCategory } from '../actions/action-creators'
-import fetchCategories from '../services/fetchCategories'
+import { fetchCategories } from '../services/'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import './styles/index.css'
 
-export class App extends Component {
+const renderCategories = props => {
+  return props.categories.map(category => {
+    return (
+      <div key={category.id}>
+        <Link to="/category" onClick={() => props.pickCategory(category)}>
+          <h4>{category.title}</h4>
+        </Link>
+      </div>
+    )
+  })
+}
+
+export default class App extends Component {
   componentDidMount = () => {
     fetchCategories().then(data => this.props.setCategories(data))
   }
@@ -15,18 +26,7 @@ export class App extends Component {
     return (
       <main className="App">
         <h2>Jeopardy!</h2>
-        {this.props.categories.map(category => {
-          return (
-            <div key={category.id}>
-              <Link
-                to="/category"
-                onClick={() => this.props.pickCategory(category)}
-              >
-                <h4>{category.title}</h4>
-              </Link>
-            </div>
-          )
-        })}
+        {renderCategories(this.props)}
       </main>
     )
   }
@@ -43,9 +43,3 @@ App.propTypes = {
   setCategories: PropTypes.func,
   pickCategory: PropTypes.func
 }
-
-function mapStateToProps(state) {
-  return { categories: state.categories }
-}
-
-export default connect(mapStateToProps, { setCategories, pickCategory })(App)

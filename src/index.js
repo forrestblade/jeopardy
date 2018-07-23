@@ -1,9 +1,9 @@
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { BrowserRouter, Route } from 'react-router-dom'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import { render } from 'react-dom'
-import App from './components/'
-import Category from './components/Category'
+import App from './components/index.connected'
+import Category from './components/Category/index.connected'
 import React from 'react'
 import reducer from './reducers'
 import './index.css'
@@ -16,10 +16,10 @@ const store = createStore(
 render(
   <Provider store={store}>
     <BrowserRouter>
-      <Switch>
+      <div>
         <Route exact path="/" component={App} />
         <Route path="/category" component={Category} />
-      </Switch>
+      </div>
     </BrowserRouter>
   </Provider>,
   document.getElementById('root')

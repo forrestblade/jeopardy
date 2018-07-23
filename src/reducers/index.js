@@ -1,6 +1,4 @@
-import * as types from '../actions/action-types'
-
-const type = types.type
+import type from '../actions/action-types'
 
 const defaultState = {
   categories: [],
