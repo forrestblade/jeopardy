@@ -48,7 +48,10 @@ Category.defaultProps = {
 
 Category.propTypes = {
   clues: PropTypes.array,
-  category: PropTypes.object,
+  category: PropTypes.shape({
+    id: PropTypes.number,
+    title:PropTypes.string
+  }),
   setClues: PropTypes.func
 }
 
